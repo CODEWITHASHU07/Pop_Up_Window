@@ -41,13 +41,13 @@
         box-shadow: 2px 2px 0px black;
         cursor: pointer;
         transition: 0.4s;
-    }
-    button:hover{
+      }
+      button:hover {
         box-shadow: none;
         background: black;
         color: burlywood;
-    }
-    #popup {
+      }
+      #popup {
         border: 1px solid white;
         height: 300px;
         width: 300px;
@@ -57,7 +57,6 @@
         position: absolute;
         display: none;
         transition: all 0.5s;
-       
       }
       h1 {
         color: rgb(19, 17, 17);
@@ -91,28 +90,24 @@
         color: black;
         position: relative;
         z-index: 10;
-        transition:0.4s;
+        transition: 0.4s;
       }
-      #popup a::after
-      {
-        content: '';
+      #popup a::after {
+        content: "";
         height: 100%;
         width: 100%;
         background: black;
         position: absolute;
         top: -100%;
-        transition:0.4s;
+        transition: 0.4s;
       }
-      #popup a:hover::after
-      {
+      #popup a:hover::after {
         top: 0;
       }
-      #popup a:hover i
-      {
+      #popup a:hover i {
         color: var(--t);
       }
-      #link
-      {
+      #link {
         border: 1px solid black;
         margin-top: 2rem;
         display: flex;
@@ -120,52 +115,45 @@
         border-radius: 15px;
         overflow: hidden;
         background: black;
-        
-    }
-    #link input{
+      }
+      #link input {
         height: 100%;
         width: 100%;
         padding: 10px;
-        border:none;
+        border: none;
         outline: none;
         font-size: 17px;
         font-weight: 600;
         background: transparent;
         color: white;
       }
-      #copy
-      {
+      #copy {
         background: transparent;
         border: none;
         font-size: 14px;
         color: white;
-        
       }
-      #copy i{
+      #copy i {
         color: white;
         font-size: 20px;
       }
-      #dismiss
-      {
+      #dismiss {
         display: block;
         margin: 3rem auto;
         padding: 7px 12px;
         background: transparent;
         color: black;
-        cursor: pointer
-        ;
+        cursor: pointer;
         font-weight: 600;
         font-size: 16px;
         box-shadow: 0px 4px 0px black;
         transition: background 0.4s;
       }
-      #dismiss:hover
-      {
+      #dismiss:hover {
         border-color: red;
         background: red;
         color: white;
         box-shadow: 0px 0px 0px black;
-       
       }
     </style>
   </head>
@@ -175,37 +163,60 @@
       <div id="popup">
         <h1>Social Media Links</h1>
         <div id="ankers">
-          <a href="#"><i class="fa-brands fa-facebook-f" style="--t:#0863F7;"></i></a
-          ><a href="#"><i class="fa-brands fa-whatsapp" style="--t:#4bc658;"></i></a
-          ><a href="#"><i class="fa-brands fa-instagram" style="--t:#f777b4;"></i></a
-          ><a href="#"><i class="fa-brands fa-linkedin" style="--t:#007ab5;"></i></a
-          ><a href="#"><i class="fa-brands fa-twitter" style="--t:#2fc7f6;"></i></a>
+          <a href="#"
+            ><i class="fa-brands fa-facebook-f" style="--t: #0863f7"></i></a
+          ><a href="#"
+            ><i class="fa-brands fa-whatsapp" style="--t: #4bc658"></i></a
+          ><a href="#"
+            ><i class="fa-brands fa-instagram" style="--t: #f777b4"></i></a
+          ><a href="#"
+            ><i class="fa-brands fa-linkedin" style="--t: #007ab5"></i></a
+          ><a href="#"
+            ><i class="fa-brands fa-twitter" style="--t: #2fc7f6"></i
+          ></a>
         </div>
-        <div id="link"><input type="text" readonly value="https://github.com/CODEWITHASHU07/Coffeewebsite.git"><button id="copy" onclick="CopyLink()"><i class="fa-solid fa-copy" style="color: #fff;"></i></button></div>
+        <div id="link">
+          <input
+            type="text"
+            readonly
+            value="https://github.com/CODEWITHASHU07/Coffeewebsite.git"
+          /><button id="copy" onclick="CopyLink()">
+            <i class="fa-solid fa-copy" style="color: #fff"></i>
+          </button>
+        </div>
         <button id="dismiss">Dismiss</button>
       </div>
     </div>
   </body>
   <script>
-    let Taranhar=document.getElementById('popup');
-    let Input=document.querySelector("input");
-    document.getElementById('dismiss').addEventListener("click",()=>{
-        Taranhar.style.display='none';
-    })
-    function showcard(){
-        Taranhar.style.display='block';
+    let Taranhar = document.getElementById("popup");
+    let flag = false;
+    let Input = document.querySelector("input");
+    document.getElementById("dismiss").addEventListener("click", () => {
+      Taranhar.style.display = "none";
+      flag = false;
+    });
+    function showcard() {
+      Taranhar.style.display = "block";
+      flag = true;
+      event.stopPropagation();
     }
-    function CopyLink()
-    {
-        let data=Input.value;
-        navigator.clipboard.writeText(data)
-        .then(()=>{
-            document.getElementById("copy").innerHTML='Copied'
+    function CopyLink() {
+      let data = Input.value;
+      navigator.clipboard
+        .writeText(data)
+        .then(() => {
+          document.getElementById("copy").innerHTML = "Copied";
         })
-        .catch((er)=>{
-            aler("can't Copy!")
-        })
+        .catch((er) => {
+          aler("can't Copy!");
+        });
+    }
 
-    }
+    document.querySelector("body").addEventListener("click", () => {
+      if (flag) {
+        Taranhar.style.display = "none";
+      }
+    });
   </script>
 </html>
