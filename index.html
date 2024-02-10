@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://kit.fontawesome.com/058bfe8e88.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: burlywood;
+      }
+      #main {
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        row-gap: 2rem;
+        position: relative;
+      }
+      button {
+        padding: 8px 10px;
+        font-weight: 600;
+        color: black;
+        background: burlywood;
+        border-radius: 5px;
+        outline: none;
+        float: unset;
+        box-shadow: 2px 2px 0px black;
+        cursor: pointer;
+        transition: 0.4s;
+    }
+    button:hover{
+        box-shadow: none;
+        background: black;
+        color: burlywood;
+    }
+    #popup {
+        border: 1px solid white;
+        height: 300px;
+        width: 300px;
+        padding: 12px;
+        background: aliceblue;
+        border-radius: 15px;
+        position: absolute;
+        display: none;
+        transition: all 0.5s;
+       
+      }
+      h1 {
+        color: rgb(19, 17, 17);
+        font-weight: 800;
+        text-align: center;
+      }
+      #ankers {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        margin-top: 2rem;
+      }
+      #popup a {
+        text-decoration: none;
+        font-size: 22px;
+        display: block;
+        height: 45px;
+        width: 45px;
+        margin-right: 8px;
+        background: snow;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        border-radius: 25px;
+        position: relative;
+        overflow: hidden;
+      }
+      #popup a i {
+        color: black;
+        position: relative;
+        z-index: 10;
+        transition:0.4s;
+      }
+      #popup a::after
+      {
+        content: '';
+        height: 100%;
+        width: 100%;
+        background: black;
+        position: absolute;
+        top: -100%;
+        transition:0.4s;
+      }
+      #popup a:hover::after
+      {
+        top: 0;
+      }
+      #popup a:hover i
+      {
+        color: var(--t);
+      }
+      #link
+      {
+        border: 1px solid black;
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+        border-radius: 15px;
+        overflow: hidden;
+        background: black;
+        
+    }
+    #link input{
+        height: 100%;
+        width: 100%;
+        padding: 10px;
+        border:none;
+        outline: none;
+        font-size: 17px;
+        font-weight: 600;
+        background: transparent;
+        color: white;
+      }
+      #copy
+      {
+        background: transparent;
+        border: none;
+        font-size: 14px;
+        color: white;
+        
+      }
+      #copy i{
+        color: white;
+        font-size: 20px;
+      }
+      #dismiss
+      {
+        display: block;
+        margin: 3rem auto;
+        padding: 7px 12px;
+        background: transparent;
+        color: black;
+        cursor: pointer
+        ;
+        font-weight: 600;
+        font-size: 16px;
+        box-shadow: 0px 4px 0px black;
+        transition: background 0.4s;
+      }
+      #dismiss:hover
+      {
+        border-color: red;
+        background: red;
+        color: white;
+        box-shadow: 0px 0px 0px black;
+       
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <button onclick="showcard()">Click Me</button>
+      <div id="popup">
+        <h1>Social Media Links</h1>
+        <div id="ankers">
+          <a href="#"><i class="fa-brands fa-facebook-f" style="--t:#0863F7;"></i></a
+          ><a href="#"><i class="fa-brands fa-whatsapp" style="--t:#4bc658;"></i></a
+          ><a href="#"><i class="fa-brands fa-instagram" style="--t:#f777b4;"></i></a
+          ><a href="#"><i class="fa-brands fa-linkedin" style="--t:#007ab5;"></i></a
+          ><a href="#"><i class="fa-brands fa-twitter" style="--t:#2fc7f6;"></i></a>
+        </div>
+        <div id="link"><input type="text" readonly value="https://github.com/CODEWITHASHU07/Coffeewebsite.git"><button id="copy" onclick="CopyLink()"><i class="fa-solid fa-copy" style="color: #fff;"></i></button></div>
+        <button id="dismiss">Dismiss</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    let Taranhar=document.getElementById('popup');
+    let Input=document.querySelector("input");
+    document.getElementById('dismiss').addEventListener("click",()=>{
+        Taranhar.style.display='none';
+    })
+    function showcard(){
+        Taranhar.style.display='block';
+    }
+    function CopyLink()
+    {
+        let data=Input.value;
+        navigator.clipboard.writeText(data)
+        .then(()=>{
+            document.getElementById("copy").innerHTML='Copied'
+        })
+        .catch((er)=>{
+            aler("can't Copy!")
+        })
+
+    }
+  </script>
+</html>
